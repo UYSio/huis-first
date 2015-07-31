@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+brew update
+brew install \
+docker docker-compose docker-machine \
+jq tmux htop-osx ack

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+sudo apt-get update
+sudo apt-get install -y \
+emacs vim \
+docker docker-compose docker-machine \
+jq tmux htop ack-grep
