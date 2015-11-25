@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 brew update
-brew install docker
-brew install docker-compose
-brew install docker-machine
+echo "Install Docker with Docker Toolbox at https://www.docker.com/docker-toolbox"
 brew install jq
 brew install tmux
 brew install htop-osx
 brew install ack
+brew install pyenv
