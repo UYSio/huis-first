@@ -1,20 +1,44 @@
 #!/usr/bin/env bash
 
-sudo apt-get update
-sudo apt-get install -y ack-grep
-sudo apt-get install -y docker
-sudo apt-get install -y docker-compose
-sudo apt-get install -y docker-machine
-sudo apt-get install -y emacs
-sudo apt-get install -y htop
-sudo apt-get install -y jq
-sudo apt-get install -y sbcl
-sudo apt-get install -y tmux
-sudo apt-get install -y vim
-sudo apt-get install -y pyenv 
-# pyenv post processing
-if [ ! -e /Users/juys/.pyenv/plugins/pyenv-virtualenv ] ; then
-  mkdir -p ~/.pyenv/plugins
-  git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+if grep -q "Arch Linux" /etc/issue ; then
+  sudo pacman -Syu ack
+  sudo pacman -Syu docker
+  sudo pacman -Syu docker-compose
+  # no docker-machine
+  sudo pacman -Syu emacs
+  sudo pacman -Syu htop
+  sudo pacman -Syu jq
+  sudo pacman -Syu tmux 
+  sudo pacman -Syu vim
+  # no pyenv, but bugger that - we default to Python3.5 anyway
+  # and aren't stuck with Python2.x on Arch.
 fi
 
+
+if grep -q "Ubuntu" /etc/issue ; then
+  sudo apt-get update
+  sudo apt-get install -y ack-grep
+  sudo apt-get install -y docker
+  sudo apt-get install -y docker-compose
+  sudo apt-get install -y docker-machine
+  sudo apt-get install -y emacs
+  sudo apt-get install -y htop
+  sudo apt-get install -y jq
+  sudo apt-get install -y sbcl
+  sudo apt-get install -y tmux
+  sudo apt-get install -y vim
+  sudo apt-get install -y pyenv 
+
+  # pyenv post processing
+  if [ ! -e /Users/juys/.pyenv/plugins/pyenv-virtualenv ] ; then
+    mkdir -p ~/.pyenv/plugins
+    git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+  fi
+fi
+
+# TODO move this to huis-vim
+mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+curl -LSso ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim 
+
+mkdir -p ~/.vim/bundle
+git clone git://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
