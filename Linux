@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
 if grep -q "Arch Linux" /etc/issue ; then
-  sudo pacman -Syu ack
-  sudo pacman -Syu docker
-  sudo pacman -Syu docker-compose
-  # no docker-machine
-  sudo pacman -Syu emacs
-  sudo pacman -Syu htop
-  sudo pacman -Syu jq
-  sudo pacman -Syu tmux 
-  sudo pacman -Syu vim
+  sudo pacman -Syy
+  sudo pacman -Syu --noconfirm \
+    ack \
+    docker \
+    docker-compose \
+    emacs \
+    htop \
+    jq \
+    tmux \
+    vim
   # no pyenv, but bugger that - we default to Python3.5 anyway
   # and aren't stuck with Python2.x on Arch.
 fi
